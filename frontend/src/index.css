@@ -67,3 +67,32 @@ header a {
   border-radius: 50%;
   color: #333;
 }
+
+
+/* clothing form */
+input {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+form button {
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Dancing Script";
+  border-radius: 3px;
+  cursor: pointer;
+}
+div.error {
+  padding: 10px;
+  background: #ffe5ec;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
+}

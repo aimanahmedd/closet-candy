@@ -5,22 +5,23 @@ const ClothingDetails = ({singleClothingItem})=>{
             <p><strong>Type:</strong> {singleClothingItem.typeOfItem}</p>
             <p><strong>Season:</strong> {singleClothingItem.season}</p>
             <p><strong>Size:</strong> {singleClothingItem.sizeNumber}</p>
-{singleClothingItem.imageURL && (
-    <div>
-        <strong>Image:</strong>
-        <img 
-            src={singleClothingItem.imageURL} 
-            alt="Clothing item"
-            style={{
-                maxWidth: '95px',
-                maxHeight: '95px',
-            }}
-        />
-    </div>
-)}
-            <p>{singleClothingItem.createdAt}</p>
-        </div>
-    )
+   
+            <p><strong>Image:</strong></p>
+             {singleClothingItem.imageURL ? (
+            <img 
+                src={singleClothingItem.imageURL} 
+                alt="Clothing item"
+                style={{
+                    maxWidth: '95px',
+                    maxHeight: '95px',
+                }}
+            />
+            ) : (
+                <p> None</p>
+            )}
+                <p>{singleClothingItem.createdAt}</p>
+            </div>
+        )
 }
 
 export default ClothingDetails
