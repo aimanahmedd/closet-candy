@@ -1,26 +1,24 @@
-import { useEffect, useState } from "react"
-
+import { useEffect, useState, useCallback } from "react"
 
 //components
 import ClothingDetails from '../components/ClothingDetails'
 import ClothingForm from '../components/ClothingForm'
 
-
-const Home =()=>{
+const Home = () => {
     const [clothes, setClothes] = useState(null)
 
-    const fetchClothes = async()=>{
+    const fetchClothes = useCallback(async () => {
         const response = await fetch('/api/outfits')
         const json = await response.json()
 
         if(response.ok){
             setClothes(json)
         }
-    }
+    }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchClothes()
-    }, []) //fires a function when component is rendered yippee!
+    }, [fetchClothes]) //fires a function when component is rendered yippee!
 
     const handleClothingAdded = () => {
         fetchClothes() // Refresh the list after adding new item
@@ -29,7 +27,7 @@ const Home =()=>{
     return (
         <div className="home">
             <div className="clothes">
-                {clothes && clothes.map((singleClothingItem)=>(
+                {clothes && clothes.map((singleClothingItem) => (
                     <ClothingDetails key={singleClothingItem._id} singleClothingItem={singleClothingItem}/>
                 ))}
             </div>

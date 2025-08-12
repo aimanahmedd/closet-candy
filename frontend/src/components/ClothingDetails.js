@@ -7,21 +7,21 @@ const ClothingDetails = ({singleClothingItem})=>{
             <p><strong>Size:</strong> {singleClothingItem.sizeNumber}</p>
    
             <p><strong>Image:</strong></p>
-             {singleClothingItem.imageURL ? (
-            <img 
-                src={singleClothingItem.imageURL} 
-                alt="Clothing item"
-                style={{
-                    maxWidth: '95px',
-                    maxHeight: '95px',
-                }}
-            />
+            {singleClothingItem.imageURL ? (
+                <img 
+                    src={singleClothingItem.imageURL} 
+                    alt="Clothing item"
+                    style={{
+                        maxWidth: '95px',
+                        maxHeight: '95px',
+                    }}
+                />
             ) : (
                 <p> None</p>
             )}
-                <p>{singleClothingItem.createdAt}</p>
-            </div>
-        )
+            <p>{singleClothingItem.createdAt}</p>
+        </div>
+    )
 }
 
 export default ClothingDetails
