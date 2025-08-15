@@ -30,6 +30,20 @@ const getClothingItem = async(req, res) =>{
 //create a new clothing item
 const createClothingItem = async (req, res) => {
     const {nameYay, typeOfItem, season, sizeNumber, imageURL} = req.body
+
+    let emptyFields = []
+
+    if(!nameYay){
+        emptyFields.push('clothing name')
+    }if(!typeOfItem){
+        emptyFields.push('clothing type')
+    }if(!season){
+        emptyFields.push('clothing season')
+    }
+    if(emptyFields.length > 0){
+        return res.status(400).json({error: 'Please fill in required fields', emptyFields})
+    }
+
     //add doc to db
         try{
             const clothingItem = await ClothingItem.create({nameYay, typeOfItem, season, sizeNumber, imageURL})

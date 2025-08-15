@@ -1,12 +1,12 @@
-import {ClothesContext} from '../context/ClothingContext'
-import {useContext} from 'react'
+import { useContext } from 'react'
+import ClothesContext from '../context/ClothingContext'
 
-export const useClothesContext = () =>{
+export const useClothesContext = () => {
     const context = useContext(ClothesContext)
-
-    if (!context){
-        throw Error('useClothesContext must be used inside ClothesContextProvider')
+    
+    if (!context) {
+        throw Error('useClothesContext must be used inside a ClothesContextProvider')
     }
-
-    return context // everytime we want to use clothing data invoke this hook and get context back
+    
+    return context
 }

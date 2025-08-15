@@ -8,6 +8,7 @@ const ClothingForm = ({ onClothingAdded })=>{
    // const [imageURL, setImage] = useState('')
     const [error, setError] = useState(null)
     const[imagePreview, setImagePreview] = useState(null)
+    const[emptyFields, setEmptyFields] = useState([])
 
     const handleImageChange = (e) =>{
         const file = e.target.files[0] 
@@ -40,6 +41,7 @@ const ClothingForm = ({ onClothingAdded })=>{
 
     if(!response.ok){
         setError(json.error)
+        setEmptyFields(json.emptyFields)
     }
 
     if(response.ok){
@@ -49,6 +51,7 @@ const ClothingForm = ({ onClothingAdded })=>{
         setSize('')
         //setImage('')
         setError(null)
+        setEmptyFields([])
         setImagePreview('')
         console.log("new clothing item added")
         // Trigger refresh of clothing list
@@ -62,25 +65,28 @@ const ClothingForm = ({ onClothingAdded })=>{
         <form className="create" onSubmit={handleSubmit}>
             <h3>Add a new clothing item to your closet!</h3>
 
-            <label>Clothing Name:</label>
+            <label>Clothing Name <em>- Required:</em></label>
             <input
                 type="text"
                 onChange={(e) => setName(e.target.value)}
                 value={nameYay}
+                className = {emptyFields.includes('clothing name') ? 'error': ''}
             />
 
-            <label>Clothing Type:</label>
+            <label>Clothing Type <em>- Required:</em></label>
             <input
                 type="text"
                 onChange={(e) => setType(e.target.value)}
                 value={typeOfItem}
+                className = {emptyFields.includes('clothing type') ? 'error': ''}
             />
 
-            <label>Clothing Season:</label>
+            <label>Clothing Season <em>- Required:</em></label>
             <input
                 type="text"
                 onChange={(e) => setSeason(e.target.value)}
                 value={season}
+                className = {emptyFields.includes('clothing season') ? 'error': ''}
             />
 
             <label>Clothing Size:</label>

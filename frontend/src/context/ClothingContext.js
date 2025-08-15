@@ -13,6 +13,13 @@ export const clothesReducer = (state, action) => {
             return{
                 clothes: [action.payload, ...state.clothes]
             }
+        case 'DELETE_CLOTHING':
+            console.log('Reducer: DELETE_CLOTHING case triggered')
+            console.log('Current state:', state)
+            console.log('Action payload:', action.payload)
+            return {
+                clothes: state.clothes.filter((c) => c._id !== action.payload._id)
+            }
         default:
             return state
     }

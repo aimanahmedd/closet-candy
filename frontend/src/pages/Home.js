@@ -1,24 +1,25 @@
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useCallback } from "react"
+import { useClothesContext } from '../hooks/useClothesContext'
 
 //components
 import ClothingDetails from '../components/ClothingDetails'
 import ClothingForm from '../components/ClothingForm'
 
 const Home = () => {
-    const [clothes, setClothes] = useState(null)
+    const { clothes, dispatch } = useClothesContext()
 
     const fetchClothes = useCallback(async () => {
         const response = await fetch('/api/outfits')
         const json = await response.json()
 
         if(response.ok){
-            setClothes(json)
+            dispatch({type: 'SET_CLOTHES', payload: json})
         }
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         fetchClothes()
-    }, [fetchClothes]) //fires a function when component is rendered yippee!
+    }, [fetchClothes])
 
     const handleClothingAdded = () => {
         fetchClothes() // Refresh the list after adding new item
